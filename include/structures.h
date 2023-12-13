@@ -6,7 +6,7 @@
 /*   By: seunan <seunan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:37:44 by sunko             #+#    #+#             */
-/*   Updated: 2023/12/13 19:04:54 by seunan           ###   ########.fr       */
+/*   Updated: 2023/12/13 20:10:42 by seunan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define WIDTH	960
 # define HEIGHT	540
 # define IMG_RATIO	1.7778
+# define EPSILON 1e-6	// 0.0000001
+# define LUMEN 3 // 기준 광속/광량을 정의한 매크로, 이 값을 조절하여 장면의 밝기를 조절할 수 있다.
 
 typedef enum e_bool			t_bool;
 typedef enum e_type			t_type;
@@ -31,7 +33,6 @@ typedef struct s_sphere		t_sphere;
 typedef struct s_light		t_light;
 typedef struct s_hit_record	t_hit_record;
 
-#define EPSILON 1e-6	// 0.0000001
 
 enum	e_bool
 {
@@ -97,7 +98,7 @@ struct s_scene
 	t_camera		camera;
 	t_object		*world;
 	t_object		*light;
-	t_color3		ambient;
+	t_color3		ambient; // 환경광
 	t_ray			ray;
 	t_hit_record	rec;
 };
