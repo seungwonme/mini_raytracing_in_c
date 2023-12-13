@@ -6,7 +6,7 @@
 /*   By: seunan <seunan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:37:44 by sunko             #+#    #+#             */
-/*   Updated: 2023/12/13 13:07:02 by seunan           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:32:27 by seunan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define IMG_RATIO	1.7778
 
 typedef enum e_bool			t_bool;
+typedef enum e_type			t_type;
 typedef struct s_vec3		t_vec3;
 typedef struct s_vec3		t_point3;
 typedef struct s_vec3		t_color3;
@@ -25,12 +26,18 @@ typedef struct s_ray		t_ray;
 typedef struct s_camera		t_camera;
 typedef struct s_canvas		t_canvas;
 typedef struct s_sphere		t_sphere;
+typedef struct s_object		t_object;
 typedef struct s_hit_record	t_hit_record;
 
 enum	e_bool
 {
 	FALSE,
 	TRUE
+};
+
+enum	e_type
+{
+	SP
 };
 
 struct s_vec3
@@ -84,5 +91,13 @@ struct  s_sphere
 	double		radius; // 구의 반지름
 	double		radius2; // 반지름의 제곱
 };
+
+struct s_object
+{
+	t_type	type;
+	void	*element;
+	void	*next;
+};
+
 
 #endif

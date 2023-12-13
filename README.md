@@ -2,7 +2,7 @@
 
 ## 0.1. 만든이들
 
-kilee(이기훈) / hyeonkim(김형태) / mijeong(정민재) 
+kilee(이기훈) / hyeonkim(김형태) / mijeong(정민재)
 
 ## 0.2. 왜만들었는지
 
@@ -16,13 +16,13 @@ kilee(이기훈) / hyeonkim(김형태) / mijeong(정민재)
 
 ## 0.3. 레이트레이싱이란?
 
-![그림1](https://e3.365dm.com/20/01/2048x1152/skynews-avatar-2-concept-art_4886700.jpg?bypass-service-worker&20200109072733) 
+![그림1](https://e3.365dm.com/20/01/2048x1152/skynews-avatar-2-concept-art_4886700.jpg?bypass-service-worker&20200109072733)
 
-이 글을 보는 여러분은 아마도 영화 아바타를 봤을 것이다. 아바타를 보지 않았다면 토이스토리라도. 이러한 사실적인 이미지를 만드는 과정을 렌더링이라고 한다. 렌더링 기법에는 다양한 기술들이 있는데, 우리의 교재 이름인 ray-tracing도 그러한 기술 중 하나이다. 레이트레이싱 기술 자체에 대한 설명은 좋은 레퍼런스가 많으니 여기서는 생략한다. 
+이 글을 보는 여러분은 아마도 영화 아바타를 봤을 것이다. 아바타를 보지 않았다면 토이스토리라도. 이러한 사실적인 이미지를 만드는 과정을 렌더링이라고 한다. 렌더링 기법에는 다양한 기술들이 있는데, 우리의 교재 이름인 ray-tracing도 그러한 기술 중 하나이다. 레이트레이싱 기술 자체에 대한 설명은 좋은 레퍼런스가 많으니 여기서는 생략한다.
 
 ## 0.4. 뭘만들었는지
 
-높은 수준의 레이트레이싱 프로그램을 구현하는데에는 꽤나 방대한 양의 이론적 배경 지식이 요구된다. 하지만 컴퓨터 그래픽스를 처음 접하는 사람들은 (우리가 그랬던 것처럼) 압도적인 양의 배경 지식에 좌절할 수 있다. 
+높은 수준의 레이트레이싱 프로그램을 구현하는데에는 꽤나 방대한 양의 이론적 배경 지식이 요구된다. 하지만 컴퓨터 그래픽스를 처음 접하는 사람들은 (우리가 그랬던 것처럼) 압도적인 양의 배경 지식에 좌절할 수 있다.
 
 레이트레이싱 기술의 골자는 눈으로 들어오는 광선을 역추적하는 방식인데, 사실적인 이미지를 얻기 위해서는 물리법칙의 준수가 가장 중요하다. 그렇기에 상업용 프로그램들에서는 보다 정확한 물리법칙에 기반한 path-tracing 등의 알고리즘을 사용하지만, 교재에서는 입문자들이 레이트레이싱 기술의 핵심을 학습하는 것이 목적이기 때문에 단순하면서도 레이트레이싱의 원리를 쉽게 학습할 수 있는 phong lighting model을 사용한다.
 
@@ -31,7 +31,7 @@ kilee(이기훈) / hyeonkim(김형태) / mijeong(정민재)
 컴퓨터 그래픽스에 대해 더 자세히 알고 싶다면 아래에 링크를 따라가 보는 것을 추천한다.
 
 - [Khan academy](https://www.khanacademy.org/computing/pixar/rendering/rendering1/v/rendering-1) : 레이트레이싱의 수학적 기초에 대해 강의하는 동영상. 정말 기초 중의 기초.
-- [scratchapixel](https://www.scratchapixel.com/index.php?redirect) : 컴퓨터 그래픽 전반에 대한 이론을 자세하게 설명한 사이트. 혹시 벡터나 행렬이 익숙하지 않다면, Geometry파트를 꼭 읽어보기 바란다.
+- [scratchapixel](https://www.scratchapixel.com/) : 컴퓨터 그래픽 전반에 대한 이론을 자세하게 설명한 사이트. 혹시 벡터나 행렬이 익숙하지 않다면, Geometry파트를 꼭 읽어보기 바란다.
 - [phong lighting model(Opengl)](https://learnopengl.com/Lighting/Basic-Lighting) : pixar에서 일하시는 굉장한 분이 만든 모델을 설명한 사이트. 우리는 이 사이트를 참고하여 이 교재를 작성했다.
 - [ray tracing in one weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) : path-tracing 방식을 이용하여 (진짜 레이트레이싱)구현하는 법에 대한 설명이 있는 사이트.
 
@@ -79,4 +79,4 @@ kilee(이기훈) / hyeonkim(김형태) / mijeong(정민재)
 
 기본 파트(9 챕터)를 완료하면, 아래와 같은 흐름의 프로그램이 완성된다.
 
-![image-20210415114741928](images/image-20210415114741928.png)
+![image-20210415114741928](book/images/image-20210415114741928.png)

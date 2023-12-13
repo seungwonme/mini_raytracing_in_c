@@ -17,9 +17,10 @@ SRCS = \
 	src/scene/camera.c \
 	src/scene/object_create.c \
 	src/trace/ray.c \
-	src/trace/hit/hit_sphere.c \
+	src/trace/hit/hit.c \
 	src/trace/hit/normal.c \
-	src/utils/vec3_utils.c
+	src/utils/vec3_utils.c \
+	src/utils/object_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
