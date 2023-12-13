@@ -35,8 +35,9 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 
 // hit_sphere 함수는 관련 정보를 hit_record 구조체에 저장하고 bool 값을 리턴.
 // double	hit_sphere(t_sphere *sp, t_ray *ray)를 아래와 같이 변경
-t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool	hit_sphere(t_object *sp_obj, t_ray *ray, t_hit_record *rec)
 {
+	t_sphere	*sp;
 	t_vec3		oc; //방향벡터로 나타낸 구의 중심.
 	//a, b, c는 각각 t에 관한 2차 방정식의 계수
 	double		a;
@@ -47,9 +48,7 @@ t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 	double		sqrtd; //판별식의 제곱근
 	double		root; //근
 
-	t_sphere	*sp;
-
-	sp = obj->element;
+	sp = sp_obj->element;
 	oc = vminus(ray->orig, sp->center);
 	a = vlength2(ray->dir);
 	half_b = vdot(oc, ray->dir);
@@ -71,6 +70,7 @@ t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	rec->p = ray_at(ray, rec->t);
 	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius); // 정규화된 법선벡터
+	rec->albedo = sp_obj->albedo;
 	set_face_normal(ray, rec); // rec의 법선벡터와 광선의 방향벡터의 내적을 통해 광선이 구의 앞면에 있는지 뒷면에 있는지 판별.
 	return (TRUE);
 }

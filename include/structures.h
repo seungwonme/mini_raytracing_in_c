@@ -6,7 +6,7 @@
 /*   By: seunan <seunan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 23:37:44 by sunko             #+#    #+#             */
-/*   Updated: 2023/12/13 13:32:27 by seunan           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:04:54 by seunan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ typedef struct s_vec3		t_color3;
 typedef struct s_ray		t_ray;
 typedef struct s_camera		t_camera;
 typedef struct s_canvas		t_canvas;
-typedef struct s_sphere		t_sphere;
+typedef struct s_scene		t_scene;
 typedef struct s_object		t_object;
+typedef struct s_sphere		t_sphere;
+typedef struct s_light		t_light;
 typedef struct s_hit_record	t_hit_record;
+
+#define EPSILON 1e-6	// 0.0000001
 
 enum	e_bool
 {
@@ -37,7 +41,8 @@ enum	e_bool
 
 enum	e_type
 {
-	SP
+	SP = 0,
+	LIGHT_POINT = 1,
 };
 
 struct s_vec3
@@ -83,6 +88,18 @@ struct s_hit_record
 	double		tmax;
 	double		t; // 광선의 원점과 교점 사이의 거리
 	t_bool		front_face;
+	t_color3	albedo;
+};
+
+struct s_scene
+{
+	t_canvas		canvas;
+	t_camera		camera;
+	t_object		*world;
+	t_object		*light;
+	t_color3		ambient;
+	t_ray			ray;
+	t_hit_record	rec;
 };
 
 struct  s_sphere
@@ -94,9 +111,17 @@ struct  s_sphere
 
 struct s_object
 {
-	t_type	type;
-	void	*element;
-	void	*next;
+	t_type		type;
+	void		*element;
+	void		*next;
+	t_color3	albedo;
+};
+
+struct s_light
+{
+	t_point3	orig;
+	t_color3	light_color;
+	double		bright_ratio;
 };
 
 

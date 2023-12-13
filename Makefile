@@ -19,6 +19,7 @@ SRCS = \
 	src/trace/ray.c \
 	src/trace/hit/hit.c \
 	src/trace/hit/normal.c \
+	src/trace/ray/phong_lighting.c \
 	src/utils/vec3_utils.c \
 	src/utils/object_utils.c
 OBJS = $(SRCS:.c=.o)
