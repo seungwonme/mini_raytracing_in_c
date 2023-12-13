@@ -9,7 +9,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 
 	temp_rec = *rec; // temp_rec의 tmin, tmax 값 초기화
 	hit_anything = FALSE;
-	while (world)
+	while (world != NULL)
 	{
 		if (hit_obj(world, ray, &temp_rec))
 		{
@@ -30,7 +30,7 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	hit_result = FALSE;
 	if (world->type == SP)
 		hit_result = hit_sphere(world, ray, rec);
-	return (FALSE);
+	return (hit_result);
 }
 
 // hit_sphere 함수는 관련 정보를 hit_record 구조체에 저장하고 bool 값을 리턴.

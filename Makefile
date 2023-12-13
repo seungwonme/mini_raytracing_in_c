@@ -8,7 +8,7 @@ MEMORY = -g3 -fsanitize=address
 LLDB = -g
 
 RM = rm -f
-INCLUDE = -I./INCLUDE
+INCLUDE = -I./include
 
 SRCS = \
 	src/main.c \

@@ -39,10 +39,9 @@ t_color3	ray_color(t_ray *ray, t_object *world)
 	rec.tmin = 0;
 	rec.tmax = INFINITY;
 	// 광선이 구에 적중하면(광선과 구가 교점이 있고, 교점이 카메라 앞쪽이라면)
+	// if (hit_sphere(world->element, ray, &rec))
 	if (hit(world, ray, &rec))
-	{
 		return (vmult(vplus(rec.normal, color3(1, 1, 1)), 0.5));
-	}
 	else
 	{
 		//ray의 방향벡터의 y 값을 기준으로 그라데이션을 주기 위한 계수.
