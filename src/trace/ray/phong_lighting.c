@@ -20,6 +20,7 @@ t_color3	phong_lighting(t_scene *scene)
 
 t_color3	get_light_point(t_scene *scene, t_light *light)
 {
+	t_color3	ambient;
 	t_color3	diffuse;
 	t_vec3		light_dir;
 	double		kd; // diffuse 강도
@@ -33,7 +34,17 @@ t_color3	get_light_point(t_scene *scene, t_light *light)
 
 	double		brightness;
 
-	light_dir = vunit(vminus(light->orig, scene->rec.p)); // 교점에서 출발하여 광원을 향하는 정규화된 벡터
+	double		light_len;
+	t_ray		light_ray;
+
+	// 그림자 계산
+	light_dir = vminus(light->orig, scene->rec.p);
+	light_len = vlength(light_dir);
+	light_ray = ray(vplus(scene->rec.p, vmult(scene->rec.normal, EPSILON)), light_dir);
+	if (is_shadow(scene->world, light_ray, light_len))
+		return (color3(0, 0, 0));
+
+	light_dir = vunit(light_dir); // 교점에서 출발하여 광원을 향하는 정규화된 벡터
 	// cosθ는 θ 값이 90도일 때 0이고, θ가 둔각이 되면 음수가 되므로 0.0보다 작은 경우는 0.0으로 처리
 	kd = fmax(vdot(scene->rec.normal, light_dir), 0.0); // 교점에서 출발하여 광원을 향하는 벡터와 교점에서의 법선 벡터의 내적값
 	diffuse = vmult(light->light_color, kd); // 광원의 색상과 diffuse 강도를 곱해준다.
@@ -45,12 +56,24 @@ t_color3	get_light_point(t_scene *scene, t_light *light)
 	spec = pow(fmax(vdot(view_dir, reflect_dir), 0.0), ksn);
 	specular = vmult(vmult(light->light_color, ks), spec);
 
+	ambient = scene->ambient;
 	brightness = light->bright_ratio * LUMEN;
-	return (vmult(vplus(vplus(scene->ambient, diffuse), specular), brightness));
+	return (vmult(vplus(vplus(ambient, diffuse), specular), brightness));
 }
 
 t_vec3	reflect(t_vec3 v, t_vec3 n)
 {
 	// v - 2 * dot(v, n) * n
 	return (vminus(v, vmult(n, vdot(v, n) * 2)));
+}
+
+t_bool	is_shadow(t_object *objs, t_ray right_ray, double light_len)
+{
+	t_hit_record	rec;
+
+	rec.tmin = 0;
+	rec.tmax = light_len;
+	if (hit(objs, &right_ray, &rec))
+		return (TRUE);
+	return (FALSE);
 }

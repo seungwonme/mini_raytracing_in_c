@@ -16,6 +16,7 @@ void	set_face_normal(t_ray *r, t_hit_record *rec);
 t_color3	phong_lighting(t_scene *scene);
 t_color3	get_light_point(t_scene *scene, t_light *light);
 t_vec3		reflect(t_vec3 v, t_vec3 n);
+t_bool		is_shadow(t_object *objs, t_ray right_ray, double light_len);
 
 // trace/ray.c
 t_ray		ray(t_point3 orig, t_vec3 dir);

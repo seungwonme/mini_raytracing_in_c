@@ -5,31 +5,7 @@
 #include "trace.h"
 #include "utils.h"
 
-t_scene	*scene_init(void)
-{
-	t_scene		*scene;
-	t_object	*world;
-	t_object	*lights;
-	double		ka;
-
-	if (!(scene = malloc(sizeof(t_scene))))
-		return (NULL);
-	scene->canvas = canvas(400, 300);
-	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
-
-	// world에 구 3개 추가
-	world = object(SP, sphere(point3(-2, 0, -5), 2), color3(0.5, 0, 0));
-	oadd(&world, object(SP, sphere(point3(2, 0, -5), 2), color3(0, 0.5, 0)));
-	oadd(&world, object(SP, sphere(point3(0, -1000, 0), 990), color3(1, 1, 1)));
-	scene->world = world;
-
-	// 빛 추가
-	lights = object(LIGHT_POINT, light_point(point3(0, 5, 0), color3(1, 1, 1), 1), color3(0, 0, 0)); // 더미 albedo
-	scene->light = lights;
-	ka = 0.1;
-	scene->ambient = vmult(color3(1, 1, 1), ka);
-	return (scene);
-}
+t_scene	*scene_init(void);
 
 int main(void)
 {
@@ -61,4 +37,30 @@ int main(void)
 		}
 		--j;
 	}
+}
+
+t_scene	*scene_init(void)
+{
+	t_scene		*scene;
+	t_object	*world;
+	t_object	*lights;
+	double		ka;
+
+	if (!(scene = malloc(sizeof(t_scene))))
+		return (NULL);
+	scene->canvas = canvas(400, 300);
+	scene->camera = camera(&scene->canvas, point3(0, 0, 0));
+
+	// world에 구 3개 추가
+	world = object(SP, sphere(point3(-2, 0, -5), 2), color3(0.5, 0, 0));
+	oadd(&world, object(SP, sphere(point3(0, -1000, 0), 995), color3(1, 1, 1)));
+	oadd(&world, object(SP, sphere(point3(2, 0, -5), 2), color3(0, 0.5, 0)));
+	scene->world = world;
+
+	// 빛 추가
+	lights = object(LIGHT_POINT, light_point(point3(0, 20, 0), color3(1, 1, 1), 0.5), color3(0, 0, 0)); // 더미 albedo
+	scene->light = lights;
+	ka = 0.1;
+	scene->ambient = vmult(color3(1, 1, 1), ka);
+	return (scene);
 }
