@@ -14,6 +14,7 @@ void	set_face_normal(t_ray *r, t_hit_record *rec);
 
 // trace/ray/phong_lighting.c
 t_color3	phong_lighting(t_scene *scene);
+t_color3	get_light_point(t_scene *scene, t_light *light);
 
 // trace/ray.c
 t_ray		ray(t_point3 orig, t_vec3 dir);
