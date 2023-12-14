@@ -16,10 +16,10 @@ SRCS = \
 	src/scene/canvas.c \
 	src/scene/camera.c \
 	src/scene/object_create.c \
-	src/trace/ray.c \
 	src/trace/hit/hit.c \
 	src/trace/hit/normal.c \
 	src/trace/ray/phong_lighting.c \
+	src/trace/ray/ray.c \
 	src/utils/vec3_utils.c \
 	src/utils/object_utils.c
 OBJS = $(SRCS:.c=.o)

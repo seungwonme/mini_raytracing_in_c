@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seunan <seunan@student.42seoul.kr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 23:37:44 by sunko             #+#    #+#             */
-/*   Updated: 2023/12/13 20:10:42 by seunan           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
@@ -27,12 +15,11 @@ typedef struct s_vec3		t_color3;
 typedef struct s_ray		t_ray;
 typedef struct s_camera		t_camera;
 typedef struct s_canvas		t_canvas;
-typedef struct s_scene		t_scene;
-typedef struct s_object		t_object;
-typedef struct s_sphere		t_sphere;
-typedef struct s_light		t_light;
 typedef struct s_hit_record	t_hit_record;
-
+typedef struct s_scene		t_scene;
+typedef struct s_sphere		t_sphere;
+typedef struct s_object		t_object;
+typedef struct s_light		t_light;
 
 enum	e_bool
 {
@@ -42,8 +29,10 @@ enum	e_bool
 
 enum	e_type
 {
-	SP = 0,
-	LIGHT_POINT = 1,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	LIGHT_POINT,
 };
 
 struct s_vec3
@@ -53,10 +42,8 @@ struct s_vec3
 	double	z;
 };
 
-
 // P = O + d (P : 광선, O : 출발점, d : 방향벡터)
 // P(t) = O + tD (t : 실수, D : 정규화된 방향벡터)
-
 struct s_ray
 {
 	t_point3	orig;

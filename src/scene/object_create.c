@@ -1,4 +1,4 @@
- #include "scene.h"
+#include "scene.h"
 
 t_object	*object(t_type type, void *element, t_color3 albedo)
 {
